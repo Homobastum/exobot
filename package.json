@@ -1,0 +1,16 @@
+{
+  "name": "exobot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mathieu GONTHIER",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "jquery": "^3.4.1",
+    "xml-js": "^1.6.11"
+  }
+}
