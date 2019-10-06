@@ -9,6 +9,7 @@
   "author": "Mathieu GONTHIER",
   "license": "ISC",
   "dependencies": {
+    "connectivity": "^1.0.2",
     "discord.js": "^11.5.1",
     "jquery": "^3.4.1",
     "xml-js": "^1.6.11"
