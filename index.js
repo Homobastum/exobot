@@ -1,3 +1,4 @@
+const connectivity = require('connectivity');
 const https = require('https');
 const convert = require('xml-js');
 const fs = require('fs');
@@ -7,22 +8,33 @@ const Exobot = new Discord.Client();
 Exobot.on('ready', () => {
     console.log(`Connecté en tant que ${Exobot.user.tag}`);
 
-    // Statut aléatoire toutes les 5 minutes
+    // Statut aléatoire
     randomActivity();
 
-    // Steam - Récupération des promotions du jour toutes les 5 minutes
+    // RSS Feed
     rssRequest('https://store.steampowered.com/feeds/daily_deals.xml', './data/steam_daily_deals.json', 'steamDailyDeals');
     rssRequest('https://blog.humblebundle.com/rss', './data/humble_game_bundle.json', 'humbleGameBundle');
     rssRequest('https://itch.io/feed/sales.xml', './data/itch_io_sales.json', 'itchIOSales');
     rssRequest('https://itch.io/games/free.xml', './data/itch_io_free.json', 'itchIOFree');
     
     setInterval(function () {
-        randomActivity();
+        // Vérification de la connexion toutes les 5 minutes
+        connectivity(function (online) {
+            if (online) {
+                console.log('Connexion à internet: OK');
 
-        rssRequest('https://store.steampowered.com/feeds/daily_deals.xml', './data/steam_daily_deals.json', 'steamDailyDeals');
-        rssRequest('https://blog.humblebundle.com/rss', './data/humble_game_bundle.json', 'humbleGameBundle');
-        rssRequest('https://itch.io/feed/sales.xml', './data/itch_io_sales.json', 'itchIOSales');
-        rssRequest('https://itch.io/games/free.xml', './data/itch_io_free.json', 'itchIOFree');
+                // Statut aléatoire toutes les 5 minutes
+                randomActivity();
+
+                // RSS Feed toutes les 5 minutes
+                rssRequest('https://store.steampowered.com/feeds/daily_deals.xml', './data/steam_daily_deals.json', 'steamDailyDeals');
+                rssRequest('https://blog.humblebundle.com/rss', './data/humble_game_bundle.json', 'humbleGameBundle');
+                rssRequest('https://itch.io/feed/sales.xml', './data/itch_io_sales.json', 'itchIOSales');
+                rssRequest('https://itch.io/games/free.xml', './data/itch_io_free.json', 'itchIOFree');
+            } else {
+                console.log('Connexion à internet: KO');
+            }
+        });
     }, 300000);
 });
 
