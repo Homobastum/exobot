@@ -13,7 +13,7 @@ Exobot.on('ready', () => {
 
     // RSS Feed
     rssRequest('https://store.steampowered.com/feeds/daily_deals.xml', './data/steam_daily_deals.json', 'steamDailyDeals');
-    rssRequest('https://blog.humblebundle.com/rss', './data/humble_game_bundle.json', 'humbleGameBundle');
+    rssRequest('https://blog.humblebundle.com/feed/', './data/humble_game_bundle.json', 'humbleGameBundle');
     rssRequest('https://itch.io/feed/sales.xml', './data/itch_io_sales.json', 'itchIOSales');
     rssRequest('https://itch.io/games/free.xml', './data/itch_io_free.json', 'itchIOFree');
     
@@ -28,7 +28,7 @@ Exobot.on('ready', () => {
 
                 // RSS Feed toutes les 5 minutes
                 rssRequest('https://store.steampowered.com/feeds/daily_deals.xml', './data/steam_daily_deals.json', 'steamDailyDeals');
-                rssRequest('https://blog.humblebundle.com/rss', './data/humble_game_bundle.json', 'humbleGameBundle');
+                rssRequest('https://blog.humblebundle.com/feed/', './data/humble_game_bundle.json', 'humbleGameBundle');
                 rssRequest('https://itch.io/feed/sales.xml', './data/itch_io_sales.json', 'itchIOSales');
                 rssRequest('https://itch.io/games/free.xml', './data/itch_io_free.json', 'itchIOFree');
             } else {
