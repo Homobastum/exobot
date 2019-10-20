@@ -137,10 +137,15 @@ function rssRequest (url, dataPath, dataParseFunction) {
             readObj = dataParse[dataParseFunction](readObj, result);
 
             let json = JSON.stringify(readObj);
-            fs.writeFile(dataPath, json, 'utf8', (err) => {
-                if (err) throw err;
-                console.log('Les url ont bien été enregistrées.');
-            });
+
+            console.log('Contenu du JSON: ' + json);
+
+            if (json !== '' || json !== null) {
+                fs.writeFile(dataPath, json, 'utf8', (err) => {
+                    if (err) throw err;
+                    console.log('Les url ont bien été enregistrées.');
+                });
+            }
         });
     }).on("error", (err) => {
         console.log("Error: " + err.message);
